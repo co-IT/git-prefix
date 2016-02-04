@@ -14,6 +14,7 @@ function prefix_commit {
     c_end="$(git config --get-color "" "reset")"
     c_green="$(git config --get-color "" "green")"
     cb_green="$(git config --get-color "" "bold green")"
+    cb_white="$(git config --get-color "" "bold white")"
     cb_red="$(git config --get-color "" "bold red")"
   }
 
@@ -34,7 +35,7 @@ function prefix_commit {
 
       printf "\r\n${c_green}Commit prefix is set to ${cb_green}${prefix}${c_end}\r\n";
       printf "Make sure enabling the prepare-commit-msg hook\r\n"
-      printf "in your repsitory: http://git.io/vITez\r\n\r\n"
+      printf "in your repsitory: ${cb_white}https://git.io/vgZnb${eb_end}\r\n\r\n"
     else
       unset GIT_COMMIT_PREFIX
 
