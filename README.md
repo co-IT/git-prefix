@@ -1,11 +1,18 @@
 # git-prefix-commit-message
 
-## Create the following alias
+## Usage
+
+Switch into a existing branch...
 
 ```
-alias co='f() { git checkout "$@"; workOnIssue }; f'
+prefix_commit <branch>
 ```
 
+Create and prefix a new branch...
+
+```
+prefix_commit -b <branch>
+```
 
 ## How it workOnIssue
 
