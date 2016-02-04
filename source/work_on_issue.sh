@@ -18,8 +18,6 @@ function workOnIssue() {
     [[ -n $KSH_VERSION ]]  && prefix=( "${.sh.match[@]}" )
     [[ -n $ZSH_VERSION ]]  && prefix=( "${match[@]}" )
 
-    echo $prefix
-
     export GIT_COMMIT_PREFIX=$prefix
 
     printf "\r\n${GREEN}Commit prefix is set to ${BOLD_GREEN}${prefix}${RESET_COLOR}\r\n";
