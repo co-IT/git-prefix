@@ -1,26 +1,46 @@
 #!/bin/sh
 
-function prefix_commit() {
-  c_end="$(git config --get-color "" "reset")"
-  c_green="$(git config --get-color "" "green")"
-  cb_green="$(git config --get-color "" "bold green")"
-  cb_red="$(git config --get-color "" "bold red")"
+function prefix_commit {
+  local checkout_arguments=$@
+  local c_end c_green cb_green cb_red
 
-  branch_to_prefix="^feature\/(.+)"
-  current_branch=`git rev-parse --abbrev-ref HEAD`
+  function __run {
+    __init_colors
+    __git_checkout
+    __set_prefix
+  }
 
-  if [[ $current_branch =~ $branch_to_prefix ]]; then
-    [[ -n $BASH_VERSION ]] && prefix=( "${BASH_REMATCH[1]}" )
-    [[ -n $ZSH_VERSION ]]  && prefix=( "${match[@]}" )
+  function __init_colors {
+    c_end="$(git config --get-color "" "reset")"
+    c_green="$(git config --get-color "" "green")"
+    cb_green="$(git config --get-color "" "bold green")"
+    cb_red="$(git config --get-color "" "bold red")"
+  }
 
-    export GIT_COMMIT_PREFIX=$prefix
+  function __git_checkout {
+    local result=`git checkout $checkout_arguments`
+  }
 
-    printf "\r\n${c_green}Commit prefix is set to ${cb_green}${prefix}${c_end}\r\n";
-    printf "Make sure enabling the prepare-commit-msg hook\r\n"
-    printf "in your repsitory: http://git.io/vITez\r\n\r\n"
-  else
-    unset GIT_COMMIT_PREFIX
+  function __set_prefix {
+    local branch_to_prefix="^feature\/(.+)"
+    local current_branch=`git rev-parse --abbrev-ref HEAD`
+    local prefix=""
 
-    printf "\r\n${cb_red}Commit prefix has been unset${c_end}\r\n\r\n";
-  fi
+    if [[ $current_branch =~ $branch_to_prefix ]]; then
+      [[ -n $BASH_VERSION ]] && prefix=( "${BASH_REMATCH[1]}" )
+      [[ -n $ZSH_VERSION ]]  && prefix=( "${match[@]}" )
+
+      export GIT_COMMIT_PREFIX=$prefix
+
+      printf "\r\n${c_green}Commit prefix is set to ${cb_green}${prefix}${c_end}\r\n";
+      printf "Make sure enabling the prepare-commit-msg hook\r\n"
+      printf "in your repsitory: http://git.io/vITez\r\n\r\n"
+    else
+      unset GIT_COMMIT_PREFIX
+
+      printf "\r\n${cb_red}Commit prefix has been unset${c_end}\r\n\r\n";
+    fi
+  }
+
+  __run
 }
