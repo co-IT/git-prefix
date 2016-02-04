@@ -9,9 +9,6 @@ function workOnIssue() {
   BRANCH_TO_PREFIX="^feature\/(.+)"
   CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
 
-  typeset match
-  unset -v prefix # initialize output variable
-
   if [[ $CURRENT_BRANCH =~ $BRANCH_TO_PREFIX ]]; then
     [[ -n $BASH_VERSION ]] && prefix=( "${BASH_REMATCH[1]}" )
     [[ -n $ZSH_VERSION ]]  && prefix=( "${match[@]}" )
