@@ -10,11 +10,9 @@ function workOnIssue() {
   BRANCH_TO_PREFIX="^feature\/"
   CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
 
-  if [ -n "$PREFIX" ]; then
+  if [ -n "$PREFIX" && $CURRENT_BRANCH =~ $BRANCH_TO_PREFIX ]; then
+    export GIT_COMMIT_PREFIX="$PREFIX"
 
-    if [[ $CURRENT_BRANCH =~ $BRANCH_TO_PREFIX ]] then
-      export GIT_COMMIT_PREFIX="$PREFIX"
-    fi
     printf "\r\n${BOLD_GREEN}Prefixing enabled${RESET_COLOR}\r\n";
     printf "Make sure enabling the prepare-commit-msg hook\r\n"
     printf "in your repsitory: http://git.io/vITez\r\n\r\n"
