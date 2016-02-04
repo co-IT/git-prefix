@@ -43,4 +43,5 @@ function prefix_commit {
   }
 
   __run
+  return $?
 }
