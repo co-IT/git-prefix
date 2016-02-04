@@ -1,10 +1,11 @@
 # git-prefix-commit-message
 
-## Usage
+## Create the following alias
 
 ```
-> workOnIssue <issue-number>
+alias co='f() { git checkout "$@"; workOnIssue }; f'
 ```
+
 
 ## How it workOnIssue
 
