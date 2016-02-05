@@ -1,6 +1,6 @@
 #!/bin/sh
 
-function prefix_commit {
+function git_prefix {
   local checkout_arguments=$@
   local c_end c_green cb_green cb_red
 
