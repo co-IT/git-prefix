@@ -1,4 +1,5 @@
-# git-prefix-commit-message
+# git-prefix
+> Commits via convention
 
 `git_prefix` enhances `git checkout`. When a branch has changed `git_prefix` will check if it matches the pattern `feature/<any>`. `<any>` is taken as prefix for all commits that will be created on the branch `feature/<any>`.
 
