@@ -1,16 +1,15 @@
 #!/bin/sh
 
 # setting up colors for console output
-GREEN="$(git config --get-color "" "green")"
-BOLD_GREEN="$(git config --get-color "" "bold green")"
-RESET_COLOR="$(git config --get-color "" "reset")"
+c_end="$(git config --get-color "" "reset")"
+c_green="$(git config --get-color "" "green")"
+cb_green="$(git config --get-color "" "bold green")"
 
-COMMIT_PREFIX=`printenv GIT_COMMIT_PREFIX`
-COMMIT_MESSAGE=`cat "$1"`
+commit_message="$(cat "$1")"
 
 # If an issue number exits it should be set
 # before the commit message
-if [ -n "$COMMIT_PREFIX" ]; then
-  printf "\r\n${GREEN}Prefixing commit message with ${BOLD_GREEN}$COMMIT_PREFIX${RESET_COLOR}\r\n"
-  echo "$COMMIT_PREFIX $COMMIT_MESSAGE" > "$1";
+if [ -n "$GIT_COMMIT_PREFIX" ]; then
+  printf "\r\n${c_green}Prefixing commit message with ${cb_green}${GIT_COMMIT_PREFIX}${c_end}\r\n"
+  echo "$GIT_COMMIT_PREFIX $commit_message" > "$1";
 fi
