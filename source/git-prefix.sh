@@ -1,8 +1,12 @@
 #!/bin/sh
 
 function git_prefix {
-  local checkout_arguments=$@
+  local checkout_arguments
+  local exit_code
   local c_end c_green cb_green cb_red
+
+  [[ -n $BASH_VERSION ]] && checkout_arguments=$@
+  [[ -n $ZSH_VERSION ]]  && checkout_arguments=($@)
 
   function __run {
     __init_colors
@@ -19,7 +23,7 @@ function git_prefix {
   }
 
   function __git_checkout {
-    local result=`git checkout $checkout_arguments`
+    exit_code=`git checkout $checkout_arguments`
   }
 
   function __set_prefix {
@@ -44,5 +48,5 @@ function git_prefix {
   }
 
   __run
-  return $?
+  return $exit_code
 }
