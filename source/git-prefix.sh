@@ -39,7 +39,7 @@ function git_prefix {
 
       printf "\r\n${c_green}Commit prefix is set to ${cb_green}${prefix}${c_end}\r\n";
       printf "Make sure enabling the prepare-commit-msg hook\r\n"
-      printf "in your repsitory: ${cb_white}https://git.io/vgZnb${eb_end}\r\n\r\n"
+      printf "in your repsitory: ${cb_white}https://git.io/vgcGK${eb_end}\r\n\r\n"
     else
       unset GIT_COMMIT_PREFIX
 
