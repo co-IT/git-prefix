@@ -29,7 +29,7 @@ function git_prefix {
 
   function __set_prefix {
     local branch_to_prefix="^feature\/(.+)"
-    local current_branch=`git rev-parse --abbrev-ref HEAD`
+    local current_branch="$(git rev-parse --abbrev-ref HEAD)"
     local prefix=""
 
     if [[ $current_branch =~ $branch_to_prefix ]]; then
