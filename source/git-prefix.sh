@@ -23,7 +23,8 @@ function git_prefix {
   }
 
   function __git_checkout {
-    exit_code=`git checkout $checkout_arguments`
+    exit_code="$(git checkout $checkout_arguments)"
+    exit_code=$?
   }
 
   function __set_prefix {
