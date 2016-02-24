@@ -7,6 +7,10 @@ cb_green="$(git config --get-color "" "bold green")"
 
 commit_message="$(cat "$1")"
 
+# Call git_prefix__set_prefix to check if we are already in a branch_to_prefix
+# that need to be prefixed
+git_prefix__set_prefix
+
 # If an issue number exits it should be set
 # before the commit message
 if [ -n "$GIT_COMMIT_PREFIX" ]; then
