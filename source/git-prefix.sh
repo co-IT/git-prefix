@@ -36,7 +36,7 @@ function git_prefix {
       [[ -n $BASH_VERSION ]] && prefix=( "${BASH_REMATCH[1]}" )
       [[ -n $ZSH_VERSION ]]  && prefix=( "${match[@]}" )
 
-      export GIT_COMMIT_PREFIX=$prefix
+      export GIT_COMMIT_PREFIX="#$prefix"
 
       printf "\r\n${c_green}Commit prefix is set to ${cb_green}${prefix}${c_end}\r\n";
       printf "Make sure enabling the prepare-commit-msg hook\r\n"
