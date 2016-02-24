@@ -11,5 +11,10 @@ commit_message="$(cat "$1")"
 # before the commit message
 if [ -n "$GIT_COMMIT_PREFIX" ]; then
   printf "\r\n${c_green}Prefixing commit message with ${cb_green}${GIT_COMMIT_PREFIX}${c_end}\r\n"
-  echo "$GIT_COMMIT_PREFIX $commit_message" > "$1";
+
+  # When the commit-message has no prefix it is going to be prefixed
+  # Avoids doubled prefixes
+  if [[ $commit_message != *$GIT_COMMIT_PREFIX* ]]; then
+    echo "$GIT_COMMIT_PREFIX $commit_message" > "$1";
+  fi
 fi
