@@ -43,8 +43,6 @@ function git_prefix {
       printf "in your repsitory: ${cb_white}https://git.io/vgcGK${eb_end}\r\n\r\n"
     else
       unset GIT_COMMIT_PREFIX
-
-      printf "\r\n${cb_red}Commit prefix has been unset${c_end}\r\n\r\n";
     fi
   }
 
