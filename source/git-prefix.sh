@@ -8,13 +8,13 @@ function git_prefix {
   [[ -n $BASH_VERSION ]] && checkout_arguments=$@
   [[ -n $ZSH_VERSION ]]  && checkout_arguments=($@)
 
-  function __run {
-    __init_colors
-    __git_checkout
-    __set_prefix
+  function git_prefix__run {
+    git_prefix__init_colors
+    git_prefix__git_checkout
+    git_prefix__set_prefix
   }
 
-  function __init_colors {
+  function git_prefix__init_colors {
     c_end="$(git config --get-color "" "reset")"
     c_green="$(git config --get-color "" "green")"
     cb_green="$(git config --get-color "" "bold green")"
@@ -22,12 +22,12 @@ function git_prefix {
     cb_red="$(git config --get-color "" "bold red")"
   }
 
-  function __git_checkout {
+  function git_prefix__git_checkout {
     exit_code="$(git checkout $checkout_arguments)"
     exit_code=$?
   }
 
-  function __set_prefix {
+  function git_prefix__set_prefix {
     local branch_to_prefix="^feature\/(.+)"
     local current_branch="$(git rev-parse --abbrev-ref HEAD)"
     local prefix=""
@@ -46,6 +46,6 @@ function git_prefix {
     fi
   }
 
-  __run
+  git_prefix__run
   return $exit_code
 }
